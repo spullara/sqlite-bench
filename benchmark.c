@@ -331,6 +331,7 @@ void benchmark_open() {
             "%sdbbench_sqlite3-%d.db",
             tmp_dir,
             db_num_);
+  sqlite3_vfs_register(sqlite3_vfs_find("unix-excl"), 1);
   status = sqlite3_open(file_name, &db_);
   if (status) {
     fprintf(stderr, "open error: %s\n", sqlite3_errmsg(db_));
